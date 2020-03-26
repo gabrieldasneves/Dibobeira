@@ -5,6 +5,35 @@
     <head>
         <title>Dibobeira</title>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <style>
+
+            #footer a {
+                color: black;
+
+            }
+
+            body {
+                background: #e0dfdf;
+                color: rgb(7, 7, 7);
+                text-align: center;
+            }
+         
+
+            .fat{
+                color:white;
+                background: #257291;
+            }
+
+
+            button{
+               border: none;
+               font-weight: bold;
+               background: none;
+               color: #257291;
+            }
+
+
+        </style>
     </head>
 
     <body>
@@ -24,12 +53,26 @@
         <button>
             Adicionar ideia
         </button>
-        <button>
+        <button class = "fat">
             Ver ideias
         </button>
-        <p>
-            G. das Neves
+        <p id="footer">
+            <a href="https://www.linkedin.com/in/gabriel-alves-das-neves-19009b13b/">G. das Neves</a> 
         </p>
+
+
+        <script>
+
+            document
+                .querySelector("button.fat")
+                ,addEventListener("click",function(){
+                    
+                })
+
+        </script>
+
+
+
     </body>
 
 </html>
