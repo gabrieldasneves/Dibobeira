@@ -123,15 +123,22 @@ main{
     width: 80%;
     max-width: 800px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
 }
 
-.input_wrapper{
-    margin: 16px 0;
+.content form div:nth-child(3),
+.content form div:nth-child(4),
+.content form div:nth-child(5) {
+    grid-column: span 2;
 }
 
 form input, form textarea{
     width: 100%;
-    padding: 11px;
+    padding: 12px;
+    box-sizing: border-box;
     border-radius: 6px;
     outline: none;
     font-size: 16px;
@@ -150,5 +157,13 @@ form button{
     height: 40;
     border-radius: 6px;
     cursor: pointer;
+    grid-column: 2;
+    justify-self: end;
 }
+form button:hover{
+    text-decoration: none;
+    background: #286c86;
+    color:white;
+}
+
     
