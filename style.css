@@ -151,6 +151,26 @@ form label{
     letter-spacing: 0.8px;
 }
 
+form a {
+    background: white;
+    width: 150px;
+    height: 40;
+    border-radius: 6px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    align-self: end;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 400ms;
+
+}
+form a:hover{
+    text-decoration: none;
+    background: #286c86;
+    color:white;
+}
+
 form button{
     background: white;
     width: 150px;
@@ -159,6 +179,8 @@ form button{
     cursor: pointer;
     grid-column: 2;
     justify-self: end;
+    transition: 400ms;
+    
 }
 form button:hover{
     text-decoration: none;
@@ -166,4 +188,10 @@ form button:hover{
     color:white;
 }
 
+#modal.hide{
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+
+}
     
