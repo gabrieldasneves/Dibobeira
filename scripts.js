@@ -1,4 +1,4 @@
-function onOff() {
+function onOff(){
     document
         .querySelector('#modal')
         .classList
