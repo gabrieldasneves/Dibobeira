@@ -35,9 +35,23 @@ basico de javascript:
 const express = require("express") // dizendo que vou usar o express
 const server = express()
 
+// configurar arquivos estaticos
+server.use(express.static("public"))
+
+
+// vou usar o nunjucks (npm i nunjucks) para poder declarar variaveis no html
+const nunjucks = require("nunjucks")
+nunjucks.configure("views", {
+    express: server,
+    
+})
 // criando uma rota "/"  e captura o pedido de clientepara responder
 server.get("/", function(request, response){
-    return response.sendFile(__dirname + "/index.html")
+    return response.render("index.html")
+})
+
+server.get("/ideias", function(request, response){
+    return response.render("ideias.html")
 })
 
 // ligando o servidor na porta 3000
