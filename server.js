@@ -43,16 +43,56 @@ server.use(express.static("public"))
 const nunjucks = require("nunjucks")
 nunjucks.configure("views", {
     express: server,
+    noCache: true,
     
 })
+
+
+const ideas = [
+    { 
+        img:'https://image.flaticon.com/icons/svg/1830/1830794.svg',
+        title:'Cursos de Programação',
+        category:'Estudo',
+        description:' Lorem ipsum dolor, sit amet consectetur',
+        url:'https://rocketseat.com.br'
+    },
+
+    { 
+        img:'https://image.flaticon.com/icons/svg/1830/1830794.svg',
+        title:'Cursos de Programação',
+        category:'Estudo',
+        description:' Lorem ipsum dolor, sit amet consectetur',
+        url:'https://rocketseat.com.br'
+    },
+
+    { 
+        img:'https://image.flaticon.com/icons/svg/1830/1830794.svg',
+        title:'Cursos de Programação',
+        category:'Estudo',
+        description:' Lorem ipsum dolor, sit amet consectetur',
+        url:'https://rocketseat.com.br'
+    },
+]
 // criando uma rota "/"  e captura o pedido de clientepara responder
 server.get("/", function(request, response){
-    return response.render("index.html")
+    const reversedIdeas = [...ideas].reverse()
+    const lastIdeas = []
+    for (idea of reversedIdeas){
+        if(lastIdeas.length < 2){
+            lastIdeas.push(idea)
+        }
+    }    
+    return response.render("index.html", {ideas: lastIdeas})
 })
 
+
 server.get("/ideias", function(request, response){
-    return response.render("ideias.html")
+    const reversedIdeas = [...ideas].reverse()
+    return response.render("ideias.html", {ideas: reversedIdeas})
 })
+
+
+
 
 // ligando o servidor na porta 3000
 server.listen(3000)
