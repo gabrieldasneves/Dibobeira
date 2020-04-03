@@ -54,7 +54,7 @@ const ideas = [
         title:'Cursos de Programação',
         category:'Estudo',
         description:' Lorem ipsum dolor, sit amet consectetur',
-        url:'https://rocketseat.com.br'
+        url:'https://www.google.com/'
     },
 
     { 
@@ -62,7 +62,7 @@ const ideas = [
         title:'Cursos de Programação',
         category:'Estudo',
         description:' Lorem ipsum dolor, sit amet consectetur',
-        url:'https://rocketseat.com.br'
+        url:'https://www.google.com/'
     },
 
     { 
@@ -70,7 +70,7 @@ const ideas = [
         title:'Cursos de Programação',
         category:'Estudo',
         description:' Lorem ipsum dolor, sit amet consectetur',
-        url:'https://rocketseat.com.br'
+        url:'https://www.google.com/'
     },
 ]
 // criando uma rota "/"  e captura o pedido de clientepara responder
