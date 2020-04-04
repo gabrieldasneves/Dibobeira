@@ -40,6 +40,9 @@ const db = require("./db")
 server.use(express.static("public"))
 
 
+//habilitar uso do request.body para o server.post
+server.use(express.urlencoded({extended: true}))
+
 // vou usar o nunjucks (npm i nunjucks) para poder declarar variaveis no html
 const nunjucks = require("nunjucks")
 nunjucks.configure("views", {
@@ -78,7 +81,10 @@ nunjucks.configure("views", {
 server.get("/", function(request, response){
 
     db.all(`SELECT * FROM ideas`,function(err, rows){
-        if (err) return console.log(err)
+        if (err){
+            console.log(err)
+            return response.send("Erro no banco de dados")
+        } 
 
         const reversedIdeas = [...rows].reverse()
         const lastIdeas = []
@@ -87,12 +93,9 @@ server.get("/", function(request, response){
                 lastIdeas.push(idea)
             }
         }    
-        return response.render("index.html", {ideas: lastIdeas})
-        
+        return response.render("index.html", {ideas: lastIdeas})        
        
     })
-
-
    
 })
 
@@ -101,7 +104,11 @@ server.get("/", function(request, response){
 server.get("/ideias", function(request, response){
 
     db.all(`SELECT * FROM ideas`,function(err, rows){
-        if (err) return console.log(err)
+        if (err){
+            console.log(err)
+            return response.send("Erro no banco de dados")
+        } 
+        
         const reversedIdeas = [...rows].reverse()
         return response.render("ideias.html", {ideas: reversedIdeas})
 
@@ -111,7 +118,30 @@ server.get("/ideias", function(request, response){
 })
 
 
+server.post("/", function(request,response){
+    const query = `INSERT INTO ideas(
+        image,
+        title,
+        category,
+        description,
+        link
+) VALUES (?,?,?,?,?);`
 
+const values =[
+request.body.image,
+request.body.title,
+request.body.category,
+request.body.description,
+request.body.link]  
+
+db.run(query, values, function(err){
+    if (err){
+        console.log(err)
+        return response.send("Erro no banco de dados")
+    }  
+    return response.redirect("/ideias")
+})
+})
 
 // ligando o servidor na porta 3000
 server.listen(3000)
