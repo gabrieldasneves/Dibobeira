@@ -51,32 +51,6 @@ nunjucks.configure("views", {
     
 })
 
-
-/*const ideas = [
-    { 
-        img:'https://image.flaticon.com/icons/svg/1830/1830794.svg',
-        title:'Cursos de Programação',
-        category:'Estudo',
-        description:' Lorem ipsum dolor, sit amet consectetur',
-        url:'https://www.google.com/'
-    },
-
-    { 
-        img:'https://image.flaticon.com/icons/svg/1830/1830794.svg',
-        title:'Cursos de Programação',
-        category:'Estudo',
-        description:' Lorem ipsum dolor, sit amet consectetur',
-        url:'https://www.google.com/'
-    },
-
-    { 
-        img:'https://image.flaticon.com/icons/svg/1830/1830794.svg',
-        title:'Cursos de Programação',
-        category:'Estudo',
-        description:' Lorem ipsum dolor, sit amet consectetur',
-        url:'https://www.google.com/'
-    },
-]*/
 // criando uma rota "/"  e captura o pedido de clientepara responder
 server.get("/", function(request, response){
 
