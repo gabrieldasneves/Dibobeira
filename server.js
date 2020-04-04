@@ -34,6 +34,7 @@ basico de javascript:
 // usando o express para criar e configurar o servidor
 const express = require("express") // dizendo que vou usar o express
 const server = express()
+const db = require("./db") 
 
 // configurar arquivos estaticos
 server.use(express.static("public"))
@@ -48,7 +49,7 @@ nunjucks.configure("views", {
 })
 
 
-const ideas = [
+/*const ideas = [
     { 
         img:'https://image.flaticon.com/icons/svg/1830/1830794.svg',
         title:'Cursos de Programação',
@@ -72,23 +73,41 @@ const ideas = [
         description:' Lorem ipsum dolor, sit amet consectetur',
         url:'https://www.google.com/'
     },
-]
+]*/
 // criando uma rota "/"  e captura o pedido de clientepara responder
 server.get("/", function(request, response){
-    const reversedIdeas = [...ideas].reverse()
-    const lastIdeas = []
-    for (idea of reversedIdeas){
-        if(lastIdeas.length < 2){
-            lastIdeas.push(idea)
-        }
-    }    
-    return response.render("index.html", {ideas: lastIdeas})
+
+    db.all(`SELECT * FROM ideas`,function(err, rows){
+        if (err) return console.log(err)
+
+        const reversedIdeas = [...rows].reverse()
+        const lastIdeas = []
+        for (idea of reversedIdeas){
+            if(lastIdeas.length < 2){
+                lastIdeas.push(idea)
+            }
+        }    
+        return response.render("index.html", {ideas: lastIdeas})
+        
+       
+    })
+
+
+   
 })
 
 
+
 server.get("/ideias", function(request, response){
-    const reversedIdeas = [...ideas].reverse()
-    return response.render("ideias.html", {ideas: reversedIdeas})
+
+    db.all(`SELECT * FROM ideas`,function(err, rows){
+        if (err) return console.log(err)
+        const reversedIdeas = [...rows].reverse()
+        return response.render("ideias.html", {ideas: reversedIdeas})
+
+    })
+
+    
 })
 
 
